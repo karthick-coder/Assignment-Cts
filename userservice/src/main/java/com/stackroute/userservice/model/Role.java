@@ -3,7 +3,9 @@ package com.stackroute.userservice.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "role")
@@ -12,8 +14,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message ="RoleName is mandatory")
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    private Set<User> users;
 }
